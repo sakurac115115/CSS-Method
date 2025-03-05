@@ -90,4 +90,131 @@ fieldset {
 
 legend {
   display: none;
+}
+
+.l_header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background-color 0.3s linear;
+}
+@media (max-width: 999px) {
+  .l_header {
+    height: 70px;
+  }
+}
+@media (min-width: 1000px) {
+  .l_header {
+    display: flex;
+    height: 100px;
+    padding: 0 32px 0 40px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #fff;
+  }
+}
+.l_header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 20px;
+  background-color: #fff;
+  width: 100%;
+}
+@media (min-width: 1000px) {
+  .l_header__inner {
+    height: 100px;
+    padding: 0;
+  }
+}
+.l_header__logo {
+  width: 160px;
+  height: auto;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.l_header__logo:hover {
+  opacity: 0.7;
+}
+.l_header__logo:hover img {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+@media (min-width: 1000px) {
+  .l_header__logo {
+    width: 240px;
+  }
+}
+.l_header__logo svg {
+  width: 160px;
+  height: 40px;
+}
+@media (min-width: 1000px) {
+  .l_header__logo svg {
+    width: 240px;
+    height: 60px;
+  }
+}
+.l_header__logo path {
+  fill: #3e2b00;
+}
+.l_header__btn {
+  width: 32px;
+  height: 20px;
+  padding-right: 5px;
+  background: none;
+  display: block;
+}
+@media (min-width: 1000px) {
+  .l_header__btn {
+    display: none;
+  }
+}
+.l_header__btn span {
+  position: relative;
+  display: block;
+  height: 2px;
+  background: #000;
+  transition: all 0.3s;
+}
+.l_header__btn span::before, .l_header__btn span::after {
+  position: absolute;
+  left: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #000;
+  transition: all 0.3s;
+}
+.l_header__btn span::before {
+  top: -10px;
+}
+.l_header__btn span::after {
+  bottom: -10px;
+}
+@media (max-width: 999px) {
+  body.is-openMenu .l_header {
+    background-color: #a18f67;
+  }
+  body.is-openMenu .l_header__inner {
+    background-color: transparent;
+  }
+  body.is-openMenu .l_header__logo path {
+    fill: #fff;
+  }
+  body.is-openMenu .l_header__btn span {
+    background: transparent;
+  }
+  body.is-openMenu .l_header__btn span::before, body.is-openMenu .l_header__btn span::after {
+    top: 0;
+    background-color: #fff;
+  }
+  body.is-openMenu .l_header__btn span::before {
+    rotate: 45deg;
+  }
+  body.is-openMenu .l_header__btn span::after {
+    rotate: -45deg;
+  }
 }/*# sourceMappingURL=style.css.map */
