@@ -1,6 +1,14 @@
 @use './variables' as *;
 @use './mixin' as *;
 
+.l_container {
+  padding-top: 100px;
+
+  @include touch {
+    padding-top: 70px;
+  }
+}
+
 .l_header {
   position: fixed;
   top: 0;
@@ -22,7 +30,9 @@
   }
 
   // ヘッダーのリンク共通
-  a {}
+  a {
+    text-decoration: none;
+  }
 
   // インナー
   &__inner {
@@ -107,6 +117,7 @@
     }
   }
 
+
   // ハンバーガーメニュー展開時のスタイル
   @at-root body.is-openMenu {
     @include touch {
@@ -151,3 +162,141 @@
 }
 
 //.l_header
+
+
+//グローバルナビゲーション
+.l_gnav {
+  opacity: 0;
+  transition: opacity .3s linear;
+
+  @include mobile {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 70px; //ヘッダーの高さ
+  }
+
+  @include touch {
+    padding-top: 40px;
+  }
+
+  @include desktop {
+    opacity: 1;
+  }
+
+  @at-root body.is-openMenu {
+    .l_gnav {
+      pointer-events: auto;
+      opacity: 1;
+      height: calc(100vh - 70px);
+      background-color: $color_bg_dark;
+
+      // @include desktop {
+      //   display: none;
+      // }
+    }
+  }
+
+  // リスト
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: flex-end;
+      height: 100px;
+    }
+  }
+
+  // アイテム
+  &__item {
+    @include fz(18);
+    @include font-webfont_Lato;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+
+    @include desktop {
+      @include fz(15);
+    }
+
+    &+& {
+      @include touch {
+        margin-top: 26px;
+      }
+    }
+
+    // リンク
+    a {
+      display: block;
+      padding: 0 20px;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+
+      @include desktop {
+        color: $color_secondary;
+      }
+    }
+
+    // カートリンク
+    &._cart {
+      @include desktop {
+        margin-left: 16px;
+      }
+
+      // TODO: エレメントコンポーネントのスタイル挿入
+
+    }
+
+  }
+
+  //__item
+}
+
+// パンくずリスト
+.l_breadcrumb {
+  padding: 16px 20px 22px;
+  background-color: #e2ded4;
+
+  @include desktop {
+    padding: 16px 40px 22px;
+  }
+
+  &__list {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    @include fz(12);
+    @include font-webfont_Lato;
+    margin-top: 6px;
+
+    // .l_breadcrumb__item + .l_breadcrumb__item
+    &+& {
+      &::before {
+        content: '/';
+        margin: 0 .5em;
+      }
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    strong {
+      line-height: 1;
+    }
+  }
+}

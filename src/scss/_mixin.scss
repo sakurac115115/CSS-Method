@@ -1,35 +1,37 @@
-@use './_variables.scss' as *;
+@use './variables' as *;
 
-// =======================================================
-// ブレイクポイント
+// =================================
+// メディアクエリ
 
-//モバイル
-@mixin mobile {
-  @media (max-width: $mobile - 1px) {
-    @content;
-  }
-}
-
-//タブレット
+// タッチデバイス（モバイル、タブレット専用）
 @mixin touch {
   @media (max-width: $desktop - 1px) {
     @content;
   }
 }
 
-//タブレット
+// モバイル専用
+@mixin mobile {
+  @media (max-width: $mobile - 1px) {
+    @content;
+  }
+}
+
+// タブレット専用
 @mixin tablet {
   @media (min-width: $mobile) and (max-width: $desktop - 1px) {
     @content;
   }
 }
-//デスクトップ
+
+// デスクトップ専用
 @mixin desktop {
   @media (min-width: $desktop) {
     @content;
   }
 }
-//デスクトップLarge
+
+// ワイドデスクトップ専用
 @mixin wide {
   @media (min-width: $wide) {
     @content;
@@ -43,8 +45,10 @@
 @mixin ov {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+
   &:hover {
     opacity: 0.7;
+
     img {
       background-color: rgba(#fff, 0.01);
     }
@@ -55,10 +59,12 @@
 @mixin ov_zoomimg {
   @include desktop {
     overflow: hidden;
+
     img {
       transition: all 0.2s ease-in-out;
     }
   }
+
   &:hover {
     img {
       @include desktop {
